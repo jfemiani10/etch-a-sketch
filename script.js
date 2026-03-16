@@ -9,8 +9,13 @@ clear.addEventListener("click", function() {
 
 
 function createGrid() {
-    dimension = Number(prompt("How many squares??"))
-    if (dimension >= 100) {dimension = 100}
+    let dimension = Number(prompt("How many squares would you like in the canvas?\n(max = 100)"));
+
+    if (!Number.isInteger(dimension) || dimension > 100 || dimension < 1) {
+        alert("Please enter an integer between 1 and 100");
+        createGrid();
+        return;
+    }
 
     container.innerHTML = "";
 
@@ -28,7 +33,7 @@ function createGrid() {
         document.body.addEventListener("mouseup", () => drawing = false);
 
         square.addEventListener("mouseenter", () => {
-            if (drawing) square.classList.add("written")
+            if (drawing) square.classList.add("written");
         })
     }
 
